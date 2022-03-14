@@ -4,5 +4,5 @@ This is bil481 hw1
 
 My badget:
 
-[![CircleCI](https://app.circleci.com/pipelines/github/MGurcan/bil481_hw1?style=svg)](https://app.circleci.com/pipelines/github/MGurcan/bil481_hw1)
+[![CircleCI](https://circleci.com/gh/bil481_hw1/MGurcan.svg?style=svg)](https://circleci.com/gh/bil481_hw1/MGurcan)
 
