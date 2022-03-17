@@ -22,7 +22,7 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class App
 {
-  public static boolean method(ArrayList<Integer> array1, ArrayList<Integer> array2, int bound){
+  public static boolean compareArraysElementByElement(ArrayList<Integer> array1, ArrayList<Integer> array2, int bound){
     if(bound < 0) return false;
     if(array1 == null || array2 ==null)   return false;
     if(array1.size() == 0) return false;
@@ -83,7 +83,7 @@ public class App
         int input2AsInt = Integer.parseInt(input2);
 
 
-        boolean result = App.method(inputList, inputList3, input2AsInt);
+        boolean result = App.compareArraysElementByElement(inputList, inputList3, input2AsInt);
         Map<String, Boolean> map = new HashMap<String, Boolean>();
         map.put("result", result);
         return new ModelAndView(map, "compute.mustache");
