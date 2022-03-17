@@ -24,4 +24,7 @@ Circle CI Badged Style:2
 
 Demo site: 
 https://nameless-cliffs-48928.herokuapp.com/
+
+Direct link to compute page:
+https://nameless-cliffs-48928.herokuapp.com/compute
 --------------------------------------------------------------------------------------------------------------------------
