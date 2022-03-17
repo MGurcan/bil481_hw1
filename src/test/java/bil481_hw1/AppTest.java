@@ -16,7 +16,7 @@ class AppTest {
   public void testInvalidLimit() {
     ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
     ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 3, 4));
-    assertTrue(App.compareArraysElementByElement(array2, array, -2));
+    assertFalse(App.compareArraysElementByElement(array2, array, -2));
   }
 
     @Test
