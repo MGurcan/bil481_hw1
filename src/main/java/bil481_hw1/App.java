@@ -97,6 +97,8 @@ public class App
         String input2 = req.queryParams("input2").replaceAll("\\s","");
         int input2AsInt = Integer.parseInt(input2);
 
+        System.out.println("input2: " + input2);
+
         //boolean result = App.search(inputList, input2AsInt);
         boolean result = App.method(inputList, inputList3, input2AsInt);
         Map<String, Boolean> map = new HashMap<String, Boolean>();
