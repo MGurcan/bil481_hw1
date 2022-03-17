@@ -22,21 +22,8 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class App
 {
-  public String getGreeting() {
-      return "Hello world.";
-  }
-
-  public static boolean search(ArrayList<Integer> array, int e) {
-    System.out.println("inside search");
-    if (array == null) return false;
-
-    for (int elt : array) {
-      if (elt == e) return true;
-    }
-    return false;
-  }
-
   public static boolean method(ArrayList<Integer> array1, ArrayList<Integer> array2, int bound){
+    if(bound < 0) return false;
     if(array1 == null || array2 ==null)   return false;
     if(array1.size() == 0) return false;
     if(array1.size() != array2.size())  return false;
@@ -52,21 +39,19 @@ public class App
 
   public static void main(String[] args) {
 
-    //--
+
     Logger logger = LogManager.getLogger(App.class);
 
     int port = Integer.parseInt(System.getenv("PORT"));
     port(port);
     logger.error("Current port number:" + port);
 
-    //--
+
       port(getHerokuAssignedPort());
      // boolean result = App.search(inputList, input2AsInt);
       get("/", (req, res) -> "Hello, World");
 
       post("/compute", (req, res) -> {
-        //System.out.println(req.queryParams("input1"));
-        //System.out.println(req.queryParams("input2"));
 
         String input1 = req.queryParams("input1");
         java.util.Scanner sc1 = new java.util.Scanner(input1);
@@ -78,7 +63,7 @@ public class App
           inputList.add(value);
         }
         sc1.close();
-//----
+
         String input3 = req.queryParams("input3");
         java.util.Scanner sc2 = new java.util.Scanner(input3);
         sc2.useDelimiter("[;\r\n]+");
@@ -90,16 +75,14 @@ public class App
         }
         sc2.close();
 
-    //---------
+
         System.out.println(inputList);
         System.out.println(inputList3);
 
         String input2 = req.queryParams("input2").replaceAll("\\s","");
         int input2AsInt = Integer.parseInt(input2);
 
-        System.out.println("input2: " + input2);
 
-        //boolean result = App.search(inputList, input2AsInt);
         boolean result = App.method(inputList, inputList3, input2AsInt);
         Map<String, Boolean> map = new HashMap<String, Boolean>();
         map.put("result", result);

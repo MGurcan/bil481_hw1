@@ -10,31 +10,42 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+
+  @Test
+  public void testInvalidLimit() {
+    ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+    ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 3, 4));
+    assertTrue(App.compareArraysElementByElement(array2, array, -2));
+  }
+
+    @Test
+    public void testNull(){
+      ArrayList<Integer> arr = new ArrayList<>();
+      arr.add(1); arr.add(1); arr.add(1);
+      assertFalse(App.compareArraysElementByElement((null), arr, 1));
     }
     @Test
-   public void testFound() {
+    public void testEmptyArray(){
+      ArrayList<Integer> empty = new ArrayList<>();
+      ArrayList<Integer> arr = new ArrayList<>();
+      arr.add(1); arr.add(1); arr.add(1);
+      assertFalse(App.compareArraysElementByElement(empty, arr, 1));
+    }
+
+    @Test
+    public void testSuitableForLimit() {
       ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-      assertTrue(App.search(array, 4));
+      ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 3, 4));
+      assertTrue(App.compareArraysElementByElement(array2, array, 2));
     }
 
     @Test
-    public void testNotFound() {
+    public void testNotSuitableForLimit() {
       ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-      assertFalse(App.search(array, 5));
+      ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(3, 4, 5, 6));
+      assertFalse(App.compareArraysElementByElement(array2, array, 2));
     }
 
-    @Test
-    public void testEmptyArray() {
-      ArrayList<Integer> array = new ArrayList<>();
-      assertFalse(App.search(array, 1));
-    }
-
-    @Test
-    public void testNull() {
-      assertFalse(App.search(null, 1));
-    }
 
 }
