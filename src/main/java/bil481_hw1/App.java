@@ -3,6 +3,11 @@
  */
 package bil481_hw1;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 import static spark.Spark.*;
 import static spark.Spark.get;
 import static spark.Spark.port;
@@ -32,6 +37,15 @@ public class App
   }
 
   public static void main(String[] args) {
+
+    //--
+    Logger logger = LogManager.getLogger(App.class);
+
+    int port = Integer.parseInt(System.getenv("PORT"));
+    port(port);
+    logger.error("Current port number:" + port);
+
+    //--
       port(getHerokuAssignedPort());
 
       get("/", (req, res) -> "Hello, World");
