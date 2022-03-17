@@ -36,6 +36,20 @@ public class App
     return false;
   }
 
+  public static boolean method(ArrayList<Integer> array1, ArrayList<Integer> array2, int bound){
+    if(array1 == null || array2 ==null)   return false;
+    if(array1.size() == 0) return false;
+    if(array1.size() != array2.size())  return false;
+
+    int different_element = 0;
+    for(int i = 0; i<array1.size(); i++){
+      if(array1.get(i) != array2.get(i))
+        different_element++;
+    }
+    if(different_element <= bound) return true;
+    return false;
+  }
+
   public static void main(String[] args) {
 
     //--
@@ -64,14 +78,27 @@ public class App
           inputList.add(value);
         }
         sc1.close();
-        System.out.println(inputList);
+//----
+        String input3 = req.queryParams("input3");
+        java.util.Scanner sc2 = new java.util.Scanner(input3);
+        sc2.useDelimiter("[;\r\n]+");
+        java.util.ArrayList<Integer> inputList3 = new java.util.ArrayList<>();
+        while (sc2.hasNext())
+        {
+          int value = Integer.parseInt(sc2.next().replaceAll("\\s",""));
+          inputList3.add(value);
+        }
+        sc2.close();
 
+    //---------
+        System.out.println(inputList);
+        System.out.println(inputList3);
 
         String input2 = req.queryParams("input2").replaceAll("\\s","");
         int input2AsInt = Integer.parseInt(input2);
 
-        boolean result = App.search(inputList, input2AsInt);
-
+        //boolean result = App.search(inputList, input2AsInt);
+        boolean result = App.method(inputList, inputList3, input2AsInt);
         Map<String, Boolean> map = new HashMap<String, Boolean>();
         map.put("result", result);
         return new ModelAndView(map, "compute.mustache");
@@ -95,30 +122,3 @@ public class App
       return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
   }
 }
-
-
-
-
-/*
-import java.util.ArrayList;
-
-public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
-
-    public static boolean search(ArrayList<Integer> array, int e) {
-        System.out.println("inside search");
-        if (array == null) return false;
-  
-        for (int elt : array) {
-          if (elt == e) return true;
-        }
-        return false;
-      }
-}
-*/
